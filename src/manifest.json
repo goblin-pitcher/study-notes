@@ -1,4 +1,12 @@
 {
 	"name": "pwa-test",
-	"short_name": "pwa"
+	"short_name": "pwa",
+	"start_url": "/",
+	"theme_color": "lightpink",
+	"background_color": "#F8F8F8",
+	"icons": [{
+		"src": "logo.png",
+		"size": "88x82",
+		"type": "image/png"
+	}]
 }
