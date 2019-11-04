@@ -5,7 +5,7 @@ const Path = require('path')
 // 实例化
 const app = new Koa()
 const router = new Router()
-const home = KoaStatic(Path.join(__dirname)+'/src/')
+const home = KoaStatic(`${Path.join(__dirname)}/src/`)
 
 // 配置
 app.use(home)
@@ -22,3 +22,10 @@ app.listen(port,()=>{
 	console.log(`server start on ${port}`)
 })
 // 路由匹配
+router.get('/content', (ctx,next)=>{
+	const question = ctx.request.query.question
+	 ctx.response.type='json'
+	ctx.response.body = {
+		data: `这是从后端返回的内容,搜索的问题是:::${question}`
+	}
+})

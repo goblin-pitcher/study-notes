@@ -9,8 +9,14 @@
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-	<h1>sasaas</h1>
+	<h1>pwa test</h1>
+	<div>
+		<input id="ipt" type="text" name="" value="问题1"></input>
+		<button onclick="getAnswer()">发送请求</button>
+		<div id="content"></div>
+	</div>
 	<script type="text/javascript">
+		const $ = document.querySelector.bind(document)
 		window.onload = function(ev){
 			if(!('serviceWorker' in navigator)) return
 			navigator.serviceWorker.register('./service-worker.js',{
@@ -21,7 +27,17 @@
 				console.log('err',err)
 			})
 		}
-		// fetch('/style.css').then(res=>{console.log(res)})
+		async function getAnswer(){
+			try{
+				const value = $('#ipt').value
+				const res = await fetch(`./content?question=${value}`)
+				const data = await res.json()
+				$('#content').innerHTML = data.data
+			} catch(ex){
+				const value = $('#ipt').value
+				$('#content').innerHTML = `${value}问题缓存不存在，离线无法获取对应内容`
+			}
+		}
 	</script>
 </body>
 </html>

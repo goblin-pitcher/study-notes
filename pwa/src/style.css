@@ -2,3 +2,11 @@
 	margin: 0;
 	padding: 0;
 }
+h1{
+	margin: 40px 0;
+}
+#content{
+	margin:20px 0;
+	background-color: lightgray;
+	min-height: 50px;
+}
