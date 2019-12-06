@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滚动条</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			overflow: hidden;
+		}
+		.content{
+			overflow-y: scroll;
+			height: 500px;
+		}
+		.item{
+			height:100px;
+		}
+		.item:nth-child(odd){
+			background-color: lightgray;
+		}
+		.item:nth-child(even){
+			background-color: lightpink;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+	</div>
+</body>
+</html>

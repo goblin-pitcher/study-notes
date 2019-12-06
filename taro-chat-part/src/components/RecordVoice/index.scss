@@ -1,0 +1,88 @@
+/* *
+* 录音时的动画效果
+* */
+@keyframes voice-recording {
+  @for $i from 1 through 10 {
+    @if($i<6){
+      #{$i*10}% {
+        height: 100% - $i*20%;
+      }
+    } @else {
+      #{$i*10}% {
+        height: $i*20% - 100%;
+      }
+    }
+  }
+}
+
+@mixin animation-dislay($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: space-between;
+}
+
+.record-voice-animation {
+  box-sizing: border-box;
+  position: fixed;
+  width: 360px;
+  height: 360px;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  @include animation-dislay(column);
+  background-color: rgba(64, 64, 64, .8);
+  border-radius: 24px;
+  padding: 83px 64px 40px 65px;
+}
+
+.voice-animation {
+  @include animation-dislay();
+
+  .icon-microphone {
+    font-size: 160px;
+    color: white;
+    width: 150px;
+  }
+}
+/* 通过给音量部分添加遮罩，控制遮罩的高度达到录音时的动画效果 */
+.voice-animation_content {
+  margin: 24px 0;
+  position: relative;
+  .voice-animation_cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(100, 100, 100, .3);
+    animation: voice-recording 1.5s infinite cubic-bezier(0.05,0.6,0.5,0.4);
+  }
+
+  .voice-animation_line {
+    @include animation-dislay(column);
+    height: 100%;
+    > view {
+      border: 4px solid #f1f1f1;
+      height: 0;
+    }
+  }
+
+  @for $i from 1 through 8 {
+    .voice-animation_line > view:nth-child(#{$i}) {
+      width: 80px - 8.5px*$i;
+    }
+  }
+}
+
+.voice-describe {
+  box-sizing: border-box;
+  @include animation-dislay();
+  align-items: center;
+  padding: 0 30px 0 50px;
+  font-size: 22px;
+  color: white;
+
+  .icon-rollback {
+    font-size: 44px;
+  }
+}

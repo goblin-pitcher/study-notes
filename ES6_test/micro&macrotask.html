@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<title></title>
+</head>
+<body>
+  <script language="javascript" type="text/javascript">
+    console.log('script start');
+    setTimeout( ()=>{console.log('setTimeout');}, 0);
+    new Promise(resolve=>{console.log('promise0');resolve()})
+               .then(console.log('promise1'))
+               .then(function() {console.log('promise2');});
+    console.log('script end');
+</script>
+</body>
+</html>

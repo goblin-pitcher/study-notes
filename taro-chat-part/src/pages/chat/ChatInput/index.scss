@@ -1,0 +1,12 @@
+.chat-input{
+  position: relative;
+}
+.chat-mask{
+  position: absolute;
+  bottom:100%;
+  left: 0;
+  height:100vh;
+  width: 100%;
+  z-index: 5;
+  background-color: rgba(0,0,0,0);
+}

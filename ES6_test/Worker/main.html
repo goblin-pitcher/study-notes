@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<title></title>
+<h1 id='a'></h1>
+<h2 id='b'></h2>
+<button id='btn' onclick="AddBtn()">按钮A</button>
+<button id='btn' onclick="AsyncBtn()">按钮B</button>
+</head>
+<body>
+  <script language="javascript" type="text/javascript">
+  var a = document.getElementById('a')
+  var b = document.getElementById('b')
+  var count=0
+  function AddBtn(){
+    count++
+    a.innerHTML=count
+  }
+  function AsyncBtn(){
+    var cal = new Worker("./worker.js")
+    cal.postMessage(JSON.stringify(45))
+    cal.onmessage = function(e){
+      b.innerHTML = e.data
+    }
+  }
+</script>
+</body>
+</html>

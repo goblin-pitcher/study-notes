@@ -1,0 +1,68 @@
+@import '@style/theme.scss';
+@import '@style/mixins.scss';
+
+.other-msg {
+  display: flex;
+  margin-top: 40px;
+}
+
+.other-head-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.msg-content {
+  line-height: 60px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 80px 0 20px;
+  @include msg-decorate(left, white);
+
+  image {
+    display: block;
+    width: 100%;
+  }
+}
+
+.answer-evaluation {
+  position: absolute;
+  right: -84px;
+  bottom: 0;
+
+  .iconfont {
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    font-size: 32px;
+    background-color: $background-color;
+    border: 1px solid $border-color1;
+    color: $placeholder-color1;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  .iconfont_hover {
+    opacity: .7;
+    color: $theme-color;
+  }
+
+  .iconfont:last-child {
+    margin-top: 20px;
+  }
+
+  .iconfont:first-child:last-child {
+    color: $theme-color;
+  }
+}
+
+.show-relate {
+  color: $theme-color;
+}
+
+.show-detail {
+  color: $theme-color;
+  text-decoration: underline;
+}

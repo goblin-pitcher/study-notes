@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<div id="app">
+</div>
+
+<script type="text/javascript">
+	var arr=[]
+    var obj = new Proxy(arr, {
+  get: function (target, key, receiver) {
+    console.log('target:',target)
+    console.log('key:',key)
+    console.log('receiver:',receiver)
+    return Reflect.get(target, key, receiver);
+  },
+  set: function (target, key, value, receiver) {
+    console.log('target:',target)
+    console.log('key:',key)
+    console.log('value:',value)
+    console.log('receiver:',receiver)
+    return Reflect.set(target, key, value, receiver);
+  }
+});
+</script>
+</body>
+</html>

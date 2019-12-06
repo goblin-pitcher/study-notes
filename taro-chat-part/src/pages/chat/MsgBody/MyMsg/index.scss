@@ -1,0 +1,22 @@
+@import '@style/theme.scss';
+@import '@style/mixins.scss';
+.my-msg{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 40px;
+}
+.my-head-icon{
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.msg-content{
+  color:white;
+  background-color: $theme-color;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin:0 20px 0 80px;
+  @include msg-decorate(right, $theme-color);
+}
+

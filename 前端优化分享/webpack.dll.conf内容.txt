@@ -1,0 +1,90 @@
+//webpack.dll.conf.js
+
+const path = require('path');
+const webpack = require('webpack');
+const config = require('../config')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+
+const ora = require('ora')
+const chalk = require('chalk')
+const rm = require('rimraf')
+
+const dllConfig = {
+  entry: {
+    vendor: [
+      'vue/dist/vue.esm.js',
+      'vue-router',
+      'vuex',
+      'axios',
+      'vue-scroller',
+      'fastclick',
+      'vue-touch',
+    ]
+  },
+  output: {
+    path: path.join(__dirname, '../dist/dll'),
+    filename: '[name].dll.js',
+    library: '[name]_library',
+    libraryTarget: 'umd'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      // 生成映射文件
+      path: path.join(__dirname, '../dist/dll/manifest.json'),
+      name: '[name]_library',
+      context: __dirname
+    }),
+    new ParallelUglifyPlugin({
+      cacheDir: '.cache/',
+      uglifyJS: {
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false
+        }
+      }
+    }),
+  ],
+}
+if (config.build.productionGzip) {
+  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+
+  dllConfig.plugins.push(
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(
+        '\\.(' +
+        config.build.productionGzipExtensions.join('|') +
+        ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  )
+}
+// 开始打包(文件名固定，打包前不需要清理旧文件，直接覆盖)
+const spinner = ora('building for production...')
+spinner.start()
+rm(path.join(config.build.assetsRoot, 'dll'), err => {
+  if (err) throw err
+  webpack(dllConfig, function (err, stats) {
+    spinner.stop()
+    if (err) throw err
+    process.stdout.write(stats.toString({
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n\n')
+
+    console.log(chalk.cyan('  Build complete.\n'))
+    console.log(chalk.yellow(
+      '  Tip: built files are meant to be served over an HTTP server.\n' +
+      '  Opening index.html over file:// won\'t work.\n'
+    ))
+  })
+
+})

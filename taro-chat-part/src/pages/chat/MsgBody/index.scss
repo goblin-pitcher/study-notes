@@ -1,0 +1,21 @@
+@import '@style/theme.scss';
+.msg-body{
+  padding: 40px 40px;
+}
+.system-msg{
+  width: 100%;
+  text-align: center;
+}
+.system-msg_content{
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 40px;
+  color: white;
+  font-size: 24px;
+  background-color: $placeholder-color;
+}
+.system-msg_time{
+  margin-top: 40px;
+  font-size: 24px;
+  color:$font-color-light;
+}

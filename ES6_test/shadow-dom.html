@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>shadow-dom</title>
+    <style type="text/css">
+    	#ipt{
+    		border: 1px solid;
+    		color:red !important;
+    		--size: 25px;
+    	}
+    </style>
+</head>
+<body>
+<div id='ipt' contenteditable="true"></div>
+<script type="text/javascript">
+var sr = document.querySelector('#ipt').attachShadow({mode:'open'})
+var sty = document.createElement('style')
+sty.type = 'text/css'
+sty.innerHTML=`
+div{color:var(--color,lightgray);font-size:var(--size,16px);cursor: text;z-index:-1;}
+`
+var ph = document.createElement('div')
+ph.id='phid'
+ph.setAttribute('pseudo','pseudo')
+ph.innerHTML='test'
+sr.appendChild(sty)
+sr.appendChild(ph)
+</script>
+</body>
+</html>

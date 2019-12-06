@@ -1,0 +1,38 @@
+/*消息相关*/
+@mixin pseudo-ele($width){
+  content: '';
+  position: absolute;
+  top: 1.5*$width;
+  border: $width solid transparent;
+}
+@mixin  msg-decorate($type, $color, $width:15px){
+  position: relative;
+  @if $type == left {
+    &:before{
+      @include pseudo-ele($width);
+      left: -1.5*$width;
+      border-right: $width solid $color;
+    }
+  }
+  @if $type == right {
+    &:after{
+      @include pseudo-ele($width);
+      right: -1.5*$width;
+      border-left: $width solid $color;
+    }
+  }
+}
+
+@mixin cross-icon($bg-color) {
+&:after {
+  content: '×';
+  display: inline-block;
+  color: #fff;
+  vertical-align: middle;
+  font-size: 40px;
+  line-height: 24px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: $bg-color;
+}
+}

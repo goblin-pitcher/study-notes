@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script type="text/javascript">
+    	class graph{
+    		constructor(){
+    			this.vertices = []
+    			this.adjList = new Map()
+    		}
+    		addVertex(v){
+    			this.vertices.push(v)
+    			this.adjList.set(v,[])
+    		}
+    		addEdge(v,...arg){
+    			arg.forEach(item=>{
+    				this.adjList.get(v).push(item)
+    			})
+    		}
+    		addVerData(v,edge){
+    			this.addVertex(v)
+    			this.addEdge(v,...edge)
+    		}
+    	}
+    	var Gra = new graph()
+    	Gra.addVerData('A',['B','C','D'])
+    	Gra.addVerData('B',['A','E','F'])
+    	Gra.addVerData('C',['A','D','G'])
+    	Gra.addVerData('D',['A','C','G','H'])
+    	Gra.addVerData('E',['B','I'])
+    	Gra.addVerData('F',['B'])
+    	Gra.addVerData('G',['C','D'])
+    	Gra.addVerData('H',['D'])
+    	Gra.addVerData('I',['E'])
+    </script>
+</body>
+</html>

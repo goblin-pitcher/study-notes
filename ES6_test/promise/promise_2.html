@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	function myPromise(fn){
+		this.state = 'pending'
+		this.callbacks = []
+		this.value = null
+		var _this = this
+		function resolve(val){
+			_this.state = 'fulfilled'
+			_this.value = val
+		    setTimeout(()=>{
+			    _this.callbacks.forEach(f=>{
+				    // f(_this.value)
+				    let a=_this.handle(f)
+			})
+		},0)}
+		fn(resolve)
+	}
+    myPromise.prototype.then = function(fulfilled) {
+		if(this.state==='pending'){
+			this.callbacks.push(fulfilled)
+		}else{
+			fulfilled(this.value)
+		}
+		return this
+	};
+	myPromise.prototype.handle = function(fun){
+		let ret=fun(this.value)
+		if(ret instanceof myPromise){
+			ret.callbacks=this.callbacks.splice(this.callbacks.indexOf(fun)+1)
+			return ret
+		}
+	}
+</script>
+</body>
+</html>

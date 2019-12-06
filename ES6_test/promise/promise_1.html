@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var a=new myPromise(res=>{setTimeout(()=>{console.log('start');res(0)},1500)}).then(res=>{console.log(res);return new myPromise(res=>{setTimeout(()=>{console.log('new-start');res(1)},1500)})}).then(res=>{console.log(res)})
+</script>
+</body>
+</html>

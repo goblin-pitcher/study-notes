@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script type="text/javascript">
+        class Node{
+            constructor(data){
+                this.h = 1
+                this.data = data
+                this.parent = null
+                this.lChild = null
+                this.rChild = null
+            }
+            insertlc(leaf){
+                if(leaf instanceof Node){
+                    this.lChild = leaf
+                    leaf.parent = this
+                    this.updateH()
+                }
+            }
+            insertrc(leaf){
+                if(leaf instanceof Node){
+                    this.rChild = leaf
+                    leaf.parent = this
+                    this.updateH()
+                }
+            }
+            updateH(){
+                let lChildH = this.lChild?this.lChild.h:0
+                let rChildH = this.rChild?this.rChild.h:0
+                this.h = Math.max(lChildH,rChildH)+1
+                if(this.parent){
+                    this.parent.updateH()
+                }
+            }
+            getHeight(){
+                if(this.lChild===null&&this.rChild===null) return 1
+                if(this.lChild===null) return this.rChild.getHeight()+1
+                if(this.rChild===null) return this.lChild.getHeight()+1
+                return Math.max(this.lChild.getHeight(),this.rChild.getHeight())+1
+            }
+            zig(){
+                let center = this.lChild
+                let tempRC = center.rChild
+                center.parent = this.parent
+                if(center.parent){
+                    center.parent.lChild = center
+                }
+                center.rChild = this
+                this.parent = center
+                this.lChild = tempRC
+                this.updateH()
+                center.updateH()
+            }
+            zigzag(){
+                this.rChild.zig()
+                this.zag()
+            }
+            zag(){
+                let center = this.rChild
+                let tempLC = center.lChild
+                center.parent = this.parent
+                if(center.parent){
+                    center.parent.rChild = center
+                }
+                center.lChild = this
+                this.parent = center
+                this.rChild = tempLC
+                this.updateH()
+                center.updateH()
+            }
+            zagzig(){
+                this.lChild.zag()
+                this.zig()
+            }
+            rotate(){
+                let lc = this.lChild
+                let rc = this.rChild
+                let getH=(node)=>{
+                    return node?node.h:0
+                }
+                if(getH(lc)>getH(rc)){
+                    if(getH(lc.lChild)<getH(lc.rChild)){
+                        this.zagzig()
+                    }else{
+                        this.zig()
+                    }
+                }else{
+                    if(getH(rc.rChild)<getH(rc.lChild)){
+                        this.zigzag()
+                    }else{
+                        this.zag()
+                    }
+                }
+            }
+            avlInsert(node){
+                if(this.parent){
+                    console.log('not root')
+                    return
+                }
+                let hot = this
+                let lc,rc
+                let search = (node)=>{
+                    let start = node
+                    let lh,rh
+                    while(start){
+                        lh = start.lChild?start.lChild.h:0
+                        rh = start.rChild?start.rChild.h:0
+                        if(Math.abs(lh-rh)>1){
+                            start.rotate()
+                            break
+                        }
+                        start = start.parent
+                    }
+                }
+                while(true){
+                    if(node.data>=hot.data){
+                        rc = hot.rChild
+                        if(!rc){
+                            hot.insertrc(node)
+                            search(hot)
+                            break
+                        }else{
+                            hot = rc
+                        }
+                    }else{
+                        lc = hot.lChild
+                        if(!lc){
+                            hot.insertlc(node)
+                            search(hot)
+                            break
+                        }else{
+                            hot = lc
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

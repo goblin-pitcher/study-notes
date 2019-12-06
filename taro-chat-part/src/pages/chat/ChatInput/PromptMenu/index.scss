@@ -1,0 +1,12 @@
+@import '@style/theme.scss';
+
+.prompt-menu{
+  z-index: 10;
+}
+.prompt-item{
+  padding: 36px 0 24px 40px;
+  border-bottom: 1px solid $border-color;
+  > rich-text {
+    pointer-events: none;
+  }
+}

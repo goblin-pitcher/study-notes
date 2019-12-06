@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>垃圾回收</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function A(){
+		let a=new Set(['a','b','c'])
+		return function(){
+			// let a=5
+			a.add(a)
+			return {a}
+		}
+	}
+	b=A()
+	</script>
+</body>
+</html>

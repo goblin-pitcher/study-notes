@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1.0">
+	<title>css时钟</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html,body{
+		height:100%;
+		overflow: hidden;
+	}
+	.clock{
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		width: 200px;
+		height: 200px;
+		border: 5px solid gray;
+		border-radius: 50%;
+	}
+	.dial{
+		list-style: none;
+		width: 0;
+		height: 0;
+	}
+	.dial>li{
+		width: 2px;
+		height: 4px;
+		background-color: black;
+		position:absolute;
+		left: 50%;
+		transform-origin: 1px 100px;
+		/*transform: translateX(-1px);*/
+	}
+	.dial>li:nth-child(5n+1){
+		height: 8px;
+	}
+	.pointer{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.pointer>div{
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.node{
+		width: 8px;
+		height: 8px;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		background-color: black;
+		opacity: 0.75;
+	}
+	.second{
+		width: 1px;
+		height: 105px;
+		top: -15px !important;
+		background-color: red;
+		transform-origin: 0.5px 15px;
+		transition: transform 0.8s ease-in-out;
+	}
+	.minute{
+		width: 2px;
+		height: 75px;
+		background-color: darkgray;
+		transform-origin: 1px 0;
+	}
+	.hour{
+		width: 3px;
+		height: 60px;
+		background-color: dimgray;
+		transform-origin: 2px 0;
+	}
+	</style>
+</head>
+<body>
+	<div class="clock">
+		<ul class="dial">
+		</ul>
+		<div class="pointer">
+			<div class="hour"></div>
+			<div class="minute"></div>
+			<div class="second"></div>
+			<div class="node"></div>
+		<div>
+    </div>
+    <script type="text/javascript">
+    	const $ = document.querySelector.bind(document)
+    	const dial = $('.dial')
+    	let innerStr = ''
+    	for(let i=0;i<60;i++){
+    		innerStr += `<li style="transform:translateX(-1px) rotate(${6*i}deg);"></li>`
+    	}
+    	dial.innerHTML = innerStr
+    	const second = $('.second')
+    	const minute = $('.minute')
+    	const hour = $('.hour')
+    	let isCancel = false
+    	let date,s,m,h
+    	function keepTransition(){
+    	 	const keepFunc= self => {
+    			self.style.transition = 'none'
+    			self.style.transform = 'translateX(-50%) rotate(174deg)'
+    			isCancel = true
+    			setTimeout(()=>{
+    				isCancel = false
+    				self.style.transition = ''
+    			},200)
+    		}
+    		second.addEventListener('transitionend',()=>{
+    			if(s===59) {
+    				keepFunc(second)
+    			}
+    		})
+    	} 
+    	function runClock(){
+    		setInterval(()=>{
+    			if(isCancel) return
+    			date = new Date()
+				s = date.getSeconds()
+				m = date.getMinutes() + s/60
+				h = date.getHours() + m/60
+    			second.style.transform = `translateX(-50%) rotate(${(180+6*s)}deg)`
+    			minute.style.transform = `translateX(-50%) rotate(${(180+6*m)}deg)`
+    			hour.style.transform = `translateX(-50%) rotate(${(180+30*h)}deg)`
+    		},200)
+    		keepTransition()
+    	}
+    	runClock()
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<title>transform</title>
+	<style type="text/css">
+		.content{
+			width: 500px;
+			height: 300px;
+			border: 1px solid black;
+			position:relative;
+		}
+		.content>div{
+			width: 30px;
+			height: 30px;
+			background-color: lightpink;
+			border-radius: 50%;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+
+		.content:hover .div1{
+			transition: 1s;
+			transform: translate(-100px,0);
+		}
+		.content:hover .div2{
+			transition: 1.15s;
+			transform: translate(-86.6px,-50px);
+		}
+		.content:hover .div3{
+			transition: 1.25s;
+			transform: translate(-50px,-86.6px);
+		}
+		.content:hover .div4{
+			transition: 1.3s;
+			transform: translate(0px,-100px);
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="menu"></div>
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+		<div class="div4"></div>
+	</div>
+</body>
+</html>

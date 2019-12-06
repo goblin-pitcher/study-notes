@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>深拷贝</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function getType(arg) {
+		return Object.prototype.toString.call(arg).replace(/\[object (.+)\]/,'$1')
+	}
+	function deepCopy(arg, map) {
+		let typeID = ['Array','Object'].indexOf(getType(arg))
+		if (typeID < 0) return arg
+		let rtn = typeID ? {} : [] 
+		map = map || new WeakMap()
+		map.set(arg, rtn)
+		Object.keys(arg).map(item => {
+			if (map.has(arg[item])) {
+				rtn[item] = map.get(arg[item])
+			} else {
+				rtn[item] = deepCopy(arg[item],map)
+			}
+		})
+		return rtn
+	}
+	</script>
+</body>
+</html>

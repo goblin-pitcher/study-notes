@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script type="text/javascript">
+    	function quickSort(arr,l,r){
+    		if(l>=r) return
+    		if(arguments.length===1){
+    			l=0
+    			r=arr.length-1
+    		}
+    		let i=l,j=r
+    		let a = arr[i]
+    		let right = true
+    		while(i<j){
+    			if(right){
+    				if(arr[j]<a){
+    					arr[i]=arr[j]
+    					arr[j]=a
+    					right=false
+    				}else{
+    					j--
+    				}
+    			}else{
+    				if(arr[i]>a){
+    					arr[j]=arr[i]
+    					arr[i]=a
+    					right=true
+    				}else{
+    					i++
+    				}
+    			}
+    		}
+    		quickSort(arr,l,i)
+    		quickSort(arr,i+1,r)
+    	}
+    	function bubble(a){
+    		let temp
+    		for(let i=0,end=a.length-1;i<=end;i++){
+    			temp = a[i]
+    			for(let j=i;j<=end;j++){
+    				if(a[j]<temp){
+    					[a[i],a[j]] = [a[j],a[i]]
+    				}
+    			}
+    		}
+    	}
+        function insertion(arr){
+            let handle = [Infinity]
+            for(let i=0,len=arr.length;i<len;i++){
+                 for(let j=0,hlen=handle.length;j<hlen;j++){
+                    if(arr[i]<=handle[j]||j===hlen-1){
+                       handle.splice(j,0,arr[i])
+                       break
+                    }
+                 }
+            }
+            handle.pop()
+            return handle
+        }
+
+        function heapSort(arr,banLen=0){
+            let length = arr.length
+            if(length === banLen) return
+            let grade = Math.floor(Math.log2(length-banLen))-1
+            let maxPos=length-banLen-1
+            let adjustHeap=(arr,index)=>{
+                let len = Math.pow(2,index)
+                let max,leftLeaf,rightLeaf
+                for(let i=len-1;i<len;i++){
+                    leftLeaf = 2*i+1>maxPos?-Infinity:arr[2*i+1]
+                    rightLeaf = 2*i+2>maxPos?-Infinity:arr[2*i+2]
+                    max = Math.max(arr[i],leftLeaf,rightLeaf)
+                    if(arr[2*i+1]===max) [arr[i],arr[2*i+1]]=[arr[2*i+1],arr[i]]
+                    if(arr[2*i+2]===max) [arr[i],arr[2*i+2]]=[arr[2*i+2],arr[i]]
+                }
+            }
+            for(let i=grade;i>=0;i--){
+                adjustHeap(arr,i)
+            }
+            [arr[0],arr[maxPos]]=[arr[maxPos],arr[0]]
+            heapSort(arr,++banLen)
+        }
+    </script>
+</body>
+</html>

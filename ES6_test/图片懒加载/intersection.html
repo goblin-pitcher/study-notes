@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        background-color: lightgray;
+      }
+      img{
+        width: 80vw;
+        height: 80vw;
+        padding: 20px 10vw;
+      }
+    </style>
+  </header>
+  <body>
+    <div>
+      <img data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574400556818&di=9303ab0787daa8c6a0d5566768e5b80f&imgtype=0&src=http%3A%2F%2Fpic49.nipic.com%2Ffile%2F20140928%2F4949133_151938528000_2.jpg" src="./default.png">
+      <img data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574400556818&di=05e1dcbed3544ce42a8aafcfad512023&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F015fc85643145f32f87512f6b07ef7.jpg%401280w_1l_2o_100sh.jpg" src="./default.png">
+      <img data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574400556818&di=d4c5bd2197132e34eaa903d996f5c0f0&imgtype=0&src=http%3A%2F%2Ffile06.16sucai.com%2F2016%2F0229%2Fb722da4b0f12ded9a72bf9c05fd3df55.jpg" src="./default.png">
+      <img data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574400556817&di=313d353f737b0808dfcc4a87b294b1a1&imgtype=0&src=http%3A%2F%2Fphotocdn.sohu.com%2F20120719%2FImg348540461.jpg" src="./default.png">
+    </div>
+    <script>
+      let myObserver = new IntersectionObserver(callback);
+      let observeList = document.querySelectorAll('img');
+      let unobserveLen = 0
+      function callback(entries,observer) {
+        entries.forEach(function(element, index) {
+          // statements
+          if (element.intersectionRatio === 0) return
+          // 方便观察效果，延迟1s加载
+          setTimeout(()=>{
+            element.target.src = element.target.dataset.src;
+            // 解除事件
+            observer.unobserve(element.target)
+            // 回收对象
+            unobserveLen++
+            if(observeList.length === unobserveLen){
+              myObserver = null
+              observeList = null
+              unobserveLen = null
+            }
+          },1000)
+        })    
+      }
+ 
+      function addObserver() {
+        observeList.forEach(function(item) {
+          myObserver.observe(item);
+        });
+      }
+ 
+      addObserver();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+@import "@style/theme.scss";
+
+$icon-margin: 20px;
+.input-box {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  padding: 15px 20px;
+  background-color: $background-color;
+
+  .iconfont {
+    font-size: 60px;
+  }
+
+  .icon-send {
+    margin-right: $icon-margin;
+  }
+}
+
+.input-text {
+  flex-grow: 1;
+  box-sizing: border-box;
+  height: auto;
+  max-height: 220px;
+  min-height: 72px;
+  padding: 16px 20px;
+  margin: 0 $icon-margin;
+  border-radius: 8px;
+  background-color: $background-color1;
+}
+
+.input-voice {
+  flex-grow: 1;
+  height: 72px;
+  line-height: 72px;
+  text-align: center;
+  margin: 0 $icon-margin;
+  border-radius: 8px;
+  background-color: #F3F3F3;
+}
+.input-voice_hover {
+  background-color: #E5E5E5
+}

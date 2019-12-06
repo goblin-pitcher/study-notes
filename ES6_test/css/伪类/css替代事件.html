@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css替代事件</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	#btn:hover:active{
+		opacity: 0.99;
+		transition: opacity 1s;
+	}
+	</style>
+</head>
+<body>
+	<button id='btn'>长按</button>
+	<script type="text/javascript">
+		document.querySelector('#btn').addEventListener('transitionend',function(){
+			alert(1)
+		})
+	</script>
+</body>
+</html>

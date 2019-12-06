@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/kejian</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon/kejian" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="16" height="16"></rect>
+        <g id="可见-2" transform="translate(0.000000, 2.000000)" fill="#CCCCCC" fill-rule="nonzero">
+            <path d="M8,0.000666666667 C3.58171685,0.000666666667 0,4.15405556 0,6 C0,7.84594444 3.58171685,11.9993333 8,11.9993333 C12.4182831,11.9993333 16,7.84594444 16,6 C16,4.15405556 12.4182831,0.000666666667 8,0.000666666667 Z M8,10.1533704 C5.79086742,10.1533704 4,8.29383333 4,6 C4,3.70614815 5.79086742,1.84661111 8,1.84661111 C10.2091326,1.84661111 12,3.70614815 12,6 C12,8.29385185 10.2091326,10.1533704 8,10.1533704 Z" id="Shape"></path>
+            <path d="M5.77777978,6 C5.77777978,7.27435615 6.77270166,8.30742593 8,8.30742593 C9.22729834,8.30742593 10.2222202,7.27435615 10.2222202,6 C10.2222202,4.72564385 9.22729834,3.69257407 8,3.69257407 C6.77270166,3.69257407 5.77777978,4.72564385 5.77777978,6 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

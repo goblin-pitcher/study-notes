@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>跨列布局</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	.box {
+    max-width: 300px;
+    columns: 2;
+}
+.text {
+    border: 5px solid #cd0000;
+}
+.clone {
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;    
+}
+	</style>
+</head>
+<body>
+	<div class="box">
+    <p id="text" class="text">2018年时间花了半年重写了CanvasAPI中文文档，结合自己实际开发经验，增加更多案例。并采用独立域名构建：www.canvasapi.cn。比MDN文档更利于理解。</p>
+</div>
+</body>
+</html>

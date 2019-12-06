@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+    <title>-webkit-box与flex</title>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .test-area {
+            width: 400px;
+            height: 100%;
+            position: relative;
+        }
+
+        .show-reverse {
+            width: 700px !important;
+            -webkit-box-direction: reverse;
+            flex-direction: row-reverse;
+        }
+
+        button {
+            width: 150px;
+            height: 30px;
+            text-align: center;
+        }
+
+        #btn1 {
+            position: absolute;
+            top: 100px;
+            right: 0;
+        }
+
+        #btn2 {
+            position: absolute;
+            top: 150px;
+            right: 0;
+        }
+
+        #btn3 {
+            position: absolute;
+            top: 200px;
+            right: 0;
+        }
+
+        .content {
+            height: 100%;
+            width: 200px;
+            border: 1px solid black;
+            display: flex;
+        }
+
+        .box {
+            height: 50px;
+            width: 50px;
+        }
+
+        .box:nth-child(odd) {
+            background-color: lightgray;
+        }
+
+        .box:nth-child(even) {
+            background-color: lightpink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-area">
+        <div class="content">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">7</div>
+        </div>
+        <button id="btn1" onclick="switchShowType()">切换至-webkit-box</button>
+        <button id="btn2" onclick="switchOrient()">切换主轴</button>
+        <button id="btn3" onclick="showReverse()">显示反转效果</button>
+    </div>
+    <script type="text/javascript">
+        const displayArr = ['-webkit-box', 'flex']
+        const boxOrient = ['horizontal', 'vertical']
+        const boxAttr = '-webkit-box-orient'
+        const flexOrient = ['row', 'column']
+        const flexAttr = 'flex-direction'
+        const $ = document.querySelector.bind(document)
+        function switchShowType() {
+            let style = $('.content').style
+            let showIndex = displayArr.indexOf(style.display)
+            showIndex = showIndex < 0 ? 1 : showIndex
+            style.display = displayArr[1 - showIndex]
+            $('#btn1').innerText = `切换至${displayArr[showIndex]}`
+        }
+        function switchOrient() {
+            let display = /(\-|\w)+/.exec($('#btn1').innerText)[0]
+            let orient, attr
+            if (displayArr.indexOf(display)) {
+                orient = boxOrient
+                attr = boxAttr
+            } else {
+                orient = flexOrient
+                attr = flexAttr
+            }
+            let style = $('.content').style
+            let showIndex = orient.indexOf(style[attr])
+            showIndex = showIndex < 0 ? 0 : showIndex
+            style[attr] = orient[1 - showIndex]
+        }
+        function showReverse() {
+            let content = $('.content')
+            let btn3 = $('#btn3')
+            if (btn3.innerText.includes('显示')) {
+                content.className += ' show-reverse'
+                btn3.innerText = '取消反转效果'
+            } else {
+                content.className = content.className.split(' ')[0]
+                btn3.innerText = '显示反转效果'
+            }
+        }
+    </script>
+</body>
+
+</html>

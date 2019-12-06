@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximun-scalable=1.0,minimum-scalable=1.0">
+	<title>父元素绑定事件</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	ul{
+		width:375px;
+	}
+	li{
+		height: 80px;
+	}
+	li:nth-child(odd){
+		background-color: lightgray;
+	}
+	li:nth-child(even){
+		background-color: lightpink;
+	}
+	</style>
+</head>
+<body>
+	<ul id="list">
+		<li>第1项</li>
+		<li>第2项</li>
+		<li>第3项</li>
+		<li>第4项</li>
+		<li>第5项</li>
+		<li>第6项</li>
+		<li>第7项</li>
+		<li>第8项</li>
+		<li>第9项</li>
+		<li>第10项</li>
+	</ul>
+	<script type="text/javascript">
+		let $ = document.querySelector.bind(document)
+		$('#list').addEventListener('click',function(ev){
+			let children = Array.from($('ul').children)
+			let path = ev.path||(ev.composedPath&&ev.composedPath())
+			let item = path[path.indexOf(this) - 1]
+			let index = children.indexOf(item) + 1
+			let funcObj = {0:funcEven,1:funcOdd}
+			funcObj[index%2](item)
+		})
+		function funcOdd(item){
+			alert(`点击基数项，该项为${item.innerText}`)
+		}
+		function funcEven(item){
+			alert(`点击偶数项，该项为${item.innerText}`)
+		}
+	</script>
+</div>
+</body>
+</html>

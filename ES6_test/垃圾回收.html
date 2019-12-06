@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>垃圾回收</title>
+    <meta name='viewport' content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+</head>
+<body>
+<button id="btnA" onclick="a()">添加事件</button>
+<button onclick="b()">清除按钮点击事件</button>
+<div id='div'></div>
+<script type="text/javascript">
+
+
+	let $ = document.querySelector.bind(document)
+	function a(){
+		let div
+		for(let i=0;i<10000;i++){
+			div = document.createElement('div')
+			div.addEventListener('click',function(){console.log('a')})
+			$('#div').appendChild(div)
+		}
+	}
+	function b(){
+		let div = $('#div')
+		div.remove()
+	}
+</script>
+</body>
+</html>

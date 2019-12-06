@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="description" content="字体图标测试">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>字体图标</title>
+	<style type="text/css">
+        @font-face {
+            font-family: 'icomoon';
+            src:  url('fonts/icomoon.eot');
+            src:  url('fonts/icomoon.eot') format('embedded-opentype'),
+            url('fonts/icomoon.ttf') format('truetype'),
+            url('fonts/icomoon.woff') format('woff'),
+            url('fonts/icomoon.svg') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'wutu';
+            src:  url('fonts2/icomoon.eot');
+            src:  url('fonts2/icomoon.eot') format('embedded-opentype'),
+            url('fonts2/icomoon.ttf') format('truetype'),
+            url('fonts2/icomoon.woff') format('woff'),
+            url('fonts2/icomoon.svg') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+        	margin: 0;
+        	padding: 0;
+        }
+        html,body{
+        	height:100%;
+        }
+        img{
+        	width:50px;
+        }
+        [class|="icon"]{
+           font-family: 'icomoon' !important;
+           font-size: 50px;
+        }
+        [class|="wutu"]{
+           font-family: 'wutu' !important;
+           font-size: 50px;
+        }
+        .icon-available:before {
+           content: "\e900";
+           color: #ccc;
+        }
+        .icon-fanhui:before {
+           content: "\e901";
+           color: #303a60;
+        }
+        .icon-my-relatives:before {
+           content: "\e902";
+           color: #303a60;
+        }
+        .icon-saoyisao_black:before {
+           content: "\e903";
+        }
+        .red:before{
+        	color:red; 
+        	background: lightblue;
+        }
+        .yellow:before{
+        	color:yellow; 
+        	background: lightgray;
+        }
+        .blue:before{
+        	color:blue; 
+        	background: lightpink;
+        }
+        .gray:before{
+        	color:gray; 
+        	background: lightcyan;
+        }
+
+        #content-div{
+        	height:300px;
+        	width:300px;
+        	background:black;
+        	text-align: center;
+        	color: white;
+        	display: table-cell;
+        	vertical-align: middle;
+        }
+        .wutu-test:before{
+        	content: "\e900";
+            color: #ccc;
+        }
+	</style>
+</head>
+<body>
+	<div>
+		<p>字体图标</p>
+		<span class="icon-available"></span>
+		<span class="icon-fanhui"></span>
+		<span class="icon-my-relatives"></span>
+		<span class="icon-saoyisao_black"></span>
+	</div>
+	<div>
+		<p>svg图片</p>
+		<img src="svg/available.svg"/>
+		<img src="svg/fanhui.svg"/>
+		<img src="svg/my-relatives.svg"/>
+		<img src="svg/saoyisao_black.svg"/>
+	</div>
+	<div>
+		<p>对字体图标进行样式操作</p>
+		<span class="icon-available red"></span>
+		<span class="icon-fanhui yellow"></span>
+		<span class="icon-my-relatives blue"></span>
+		<span class="icon-saoyisao_black gray"></span>
+	</div>
+	<div id="content-div">
+		<p class="wutu-test"></p>
+		<h3>无图像</h3>
+		<p>智慧医疗云中没有相关内容匹配的数据</p>
+	</div>
+</body>
+</html>

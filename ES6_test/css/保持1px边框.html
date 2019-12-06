@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  	<title>保持1px边框</title>
+  	<style type="text/css">
+  		.content{
+            width: 200px;
+            height: 200px;
+            background-color:lightblue;
+         }
+         .border{
+             border:1px solid #000;
+         }
+         @media screen and (-webkit-min-device-pixel-ratio:2){
+           .border{
+             transform:scaleY(0.5)
+           }
+         }
+         @media screen and (-webkit-min-device-pixel-ratio:3){
+           .border{
+             transform:scaleY(0.3333)
+           }
+         }
+  	</style>
+  </head>
+  <body>
+    <div class="content border"></div>
+    <script type="text/javascript">
+    	
+    </script>
+  </body>
+</html>

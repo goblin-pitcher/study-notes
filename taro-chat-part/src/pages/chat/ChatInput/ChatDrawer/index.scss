@@ -1,0 +1,53 @@
+@import '@style/theme.scss';
+$btn-bar-height: 90px;
+$swiper-height: 400px;
+
+.chat-menu{
+  height: 0;
+  background-color: $background-color1;
+  transition: height 0.4s linear;
+  &.active{
+    height:$btn-bar-height+$swiper-height;
+  }
+}
+swiper{
+  height: $swiper-height;
+}
+swiper-item{
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 55px;
+}
+.emoji-item{
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+  image{
+    pointer-events: none;
+    width: 60px;
+  }
+}
+.emoji-btns{
+  height: $btn-bar-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .icon-emoji{
+    font-size: 40px;
+    font-weight: 600;
+    margin-left: 20px;
+  }
+}
+.drawer-msg-send{
+  width: 110px;
+  height: $btn-bar-height;
+  font: 28px/#{$btn-bar-height} PingFangSC-Regular;
+  text-align: center;
+  color: white;
+  background-color: #027BFF;
+}
+.drawer-msg-send_hover{
+  opacity: .7;
+}

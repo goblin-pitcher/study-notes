@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>listenDom</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<style type="text/css">
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    html,body{
+	    	height:100%;
+	    }
+		#div{
+			background-color: lightgray;
+			width: 100px;
+			height:100px;
+		}
+		.clk{
+			background-color: lightblue !important; 
+		}
+	</style>
+</head>
+<body>
+	<div id='div' onclick="divClk()"></div>
+	<script type="text/javascript">
+		var $=document.querySelector.bind(document)
+		function divClk(){
+			let div = $('#div')
+			if(div.className){
+				div.className = ''
+			}else{
+				div.className = 'clk'
+			}
+			Promise.resolve().then(reslove=>{console.log('start')});
+			setTimeout(()=>{console.log('click')},0)
+		}
+	</script>
+</body>
+</html>

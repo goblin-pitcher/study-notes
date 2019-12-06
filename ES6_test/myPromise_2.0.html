@@ -1,0 +1,46 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+    html{height:100%}  
+    body{height:100%;margin:0px;padding:0px}  
+    #container{height:100%}  
+</style> 
+
+</head>
+<body>  
+<div id="container">
+
+</div> 
+
+<script type="text/javascript">
+	function myPromise(fn){
+		this.state = 'pending'
+		this.callbacks = []
+		this.value = null
+		let self = this
+		fn(resolve)
+		function resolve(val){
+		self.state = 'fulfilled'
+		self.value = val
+		setTimeout(function(){
+			self.callbacks.forEach(callback=>{
+				callback(self.value)
+			})
+		},0)
+	}
+	}
+	myPromise.prototype.then = function(fulfilled) {
+		if(this.state === 'pending'){
+			this.callbacks.push(fulfilled)
+			return this
+		}
+		fulfilled(this.value)
+		return this
+	}
+</script> 
+</body>  
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <style>
+    html,body{
+      width: 100%;
+    }
+
+      html{
+      	overflow: hidden;
+      }
+      .list-item-img{
+        width: 30%;
+        margin: 20px;
+      }
+      .active{
+        width: 50%;
+      }
+      body::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+        background-color: transparent;
+     }
+    </style>
+  </header>
+  <body>
+  	<div style="display: flex;overflow-x: auto;">
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+    <img class="list-item-img" alt="loading" src='./Jellyfish.JPG'>
+</div>
+    <script>
+      var observer = new IntersectionObserver(function(changes) {
+        // console.log(changes);
+        changes.forEach(function(element, index) {
+          // statements
+          console.log(element.intersectionRatio)
+          if(element.intersectionRatio === 1){
+            element.target.className += ' active'
+          }
+          if (element.intersectionRatio > 0 && element.intersectionRatio < 1) {
+            element.target.className = element.target.className.split(' ')[0]
+          }
+        })		
+      });
+ 
+ 
+      function addObserver() {
+        var listItems = document.querySelectorAll('.list-item-img');
+        listItems.forEach(function(item) {
+          observer.observe(item);
+        });
+      }
+ 
+      addObserver();
+    </script>
+  </body>
+</html>

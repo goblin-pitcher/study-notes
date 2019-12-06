@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<title></title>
+<h1 id='a'></h1>
+<h2 id='b'></h2>
+<div onclick="divc()">
+  <button id='btn' onclick="clickBtn()">按钮</button>
+</div>
+</head>
+<body>
+  <script language="javascript" type="text/javascript">
+  var a = document.getElementById('a')
+  var b = document.getElementById('b')
+  var c=0
+  function listenDom(){
+        // 此处采用监听DOM元素变化，scroller中DOM的变化时间随内容增大而变长，因此不能采用固定定时的方法
+        let MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+        // let p = (resolve) => {
+          let callback = () => {
+            console.log('a->',a.innerHTML)
+            console.log('b->',b.innerHTML)
+            // resolve(observer)
+          }
+          let observer = new MutationObserver(callback)
+          let options = {'attributes':true,'characterData':true, 'childList': true}
+          observer.observe(a, options)
+        // }
+        // new Promise(p).then((data) => {
+        //   data.disconnect() // 停止观察
+        //   data.takeRecords() // 清除变动记录
+        // })
+  }
+  function clickBtn(){
+    setTimeout(()=>{console.log(11)},0)
+    if(c%2===0){
+         
+          document.getElementById('a').innerHTML='mamamaa'
+           // new Promise(res=>{res()}).then(()=>{console.log('then')})
+    }else{
+      // new Promise(res=>{res()}).then(()=>{console.log('then')})
+      document.getElementById('a').innerHTML='kkksaas'
+      setTimeout(()=>{document.getElementById('a').innerHTML='final'},0)
+    }
+    console.log('zzz')
+    document.getElementById('a').style.fontSize='50px'
+    if(c++%2===0){
+      document.getElementById('btn').click()
+    }
+    event.stopPropagation()
+  }
+  function divc(){
+    console.log('aaa')
+  }
+  listenDom()
+  // document.getElementById('a').innerHTML='sasa'
+  // console.log(document.getElementById('a').innerHTML)
+</script>
+</body>
+</html>

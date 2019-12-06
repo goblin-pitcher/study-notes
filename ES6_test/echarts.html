@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.common.min.js"></script>
+    <p id="demo">点击这个按钮，获得您的坐标：</p>
+	<input type="file" id="sasa" style="width:20px;height:20px;"/>
+    <button onclick="getLocation()">试一下</button>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js "></script>
+    <script type="text/javascript">
+    function Location() {};
+ 
+    Location.prototype.getLocation = function (callback) {
+        var options = {
+            enableHighAccuracy: true,
+            maximumAge: 1000
+        };
+        this.callback = Object.prototype.toString.call(callback) == "[object Function]" ?
+            callback :
+        function (address) {
+            alert(address.province + address.city);
+            console.log("getocation(callbackFunction) 可获得定位信息对象");
+        };
+        var self = this;
+        if (navigator.geolocation) {
+            //浏览器支持geolocation
+            navigator.geolocation.getCurrentPosition(function (position) {
+                //经度
+                var longitude = position.coords.longitude;
+                //纬度
+                var latitude = position.coords.latitude;
+                self.loadMapApi(longitude, latitude);
+            }, self.onError, options);
+        } else {
+            //浏览器不支持geolocation
+        }
+    };
+ 
+    Location.prototype.loadMapApi = function (longitude, latitude) {
+        var self = this;
+        var oScript = document.createElement("script");
+        oScript.type = "text/javascript";
+        oScript.src = "http://api.map.baidu.com/getscript?v=2.0&ak=A396783ee700cfdb9ba1df281ce36862&services=&t=20140930184510";
+        document.head.appendChild(oScript);
+        oScript.onload = function (date) {
+            var point = new BMap.Point(longitude, latitude);
+            var gc = new BMap.Geocoder();
+            gc.getLocation(point, function (rs) {
+                var addComp = rs.addressComponents;
+                self.callback(addComp);
+            });
+        }
+    };
+ 
+    Location.prototype.onError = function (error) {
+        switch (error.code) {
+        case 1:
+            alert("位置服务被拒绝");
+            break;
+        case 2:
+            alert("暂时获取不到位置信息");
+            break;
+        case 3:
+            alert("获取信息超时");
+            break;
+        case 4:
+            alert("未知错误");
+            break;
+        }
+    };
+ 
+    //调用
+    var local = new Location();
+    local.getLocation(function (res) {
+        //此处就是返回的地理位置信息
+        console.log(res);
+        //JSON.stringify(res)，把返回的对象转为字符串了，自己根据需求截取下就好
+        var resstr = JSON.stringify(res);
+        alert(resstr);
+    });
+  
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'))
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+               type:'time',
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'line',
+                data: [["2018/05/12",5],{name:'',value:["2018/05/14",20] }, ["2018/05/19",40], ["2018/05/20",10], ["2018/05/21",10],["2018/06/20",20]]
+            }]
+        }
+var x=document.getElementById("demo");
+function getLocation()
+  {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            alert('(' + position.coords.latitude + ',' + position.coords.longitude +
+              ')'
+            )
+          }, (err) => {
+            alert(err.message)
+          })
+        } else {
+          alert('该浏览器不支持获取地理位置。')
+        }
+  }
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+function aaaa(){
+    for(let i in 10){
+    console.log(i)
+}
+}
+aaaa();
+        const b=1;
+        console.log(b)
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script src="./watch.js"></script>
+<script type="text/javascript">
+	var data={a:1,b:'sa',c:[],d:{e:{f:8}}}
+	function observe(data){
+		Object.keys(data).forEach(key=>{
+		defineReactive(data,key,data[key])
+		if(typeof data[key]==='object' && data[key]){
+			observe(data[key])
+		}
+	})
+	}
+	function defineReactive(obj,key,val){
+		let wat
+		if(true){
+			 wat=new watch(obj,key,(newVal,oldVal)=>{console.log(oldVal+'::to::'+newVal)})
+			// wat=new watch(obj,key,{handler:(newVal,oldVal)=>{console.log(oldVal+'::to::'+newVal)},immediate:true})
+		}
+		Object.defineProperty(obj,key,{
+			enumerable:true,
+			configurable:true,
+			get(){
+				return val
+			},
+			set(newVal){
+				console.log('do-set')
+				if(newVal!==val){
+					if(typeof newVal==='object'){
+						observe(newVal)
+					}
+					val = newVal
+					if(wat){
+					    wat.update()
+					}
+				}
+			}
+		})
+	}
+</script>
+</body>
+</html>

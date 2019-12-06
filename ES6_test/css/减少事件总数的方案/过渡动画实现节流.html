@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+	<title>失败</title>
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	#btn{
+		width:100px;
+		height: 60px;
+		transition: width 2s;
+	}
+	#btn:hover:active{
+		opacity: .5;
+	}
+	</style>
+</head>
+<body>
+	<button id="btn">长按1秒打印</button>
+	<script type="text/javascript">
+		let count = 0
+		let $ = document.querySelector.bind(document)
+		function click(ev){
+			ev.target.style.transitionProperty = 'opacity'
+		}
+		function add(){
+						console.log(count++)
+		}
+		$('#btn').addEventListener('click',click)
+		$('#btn').addEventListener('transitionend',add)
+	</script>
+</div>
+</body>
+</html>

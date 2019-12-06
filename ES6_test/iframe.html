@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <style>
+.iframe{
+	width:100%;
+	height:100%;
+}
+    </style>
+  </header>
+  <body>
+  	<iframe class="iframe" src="./echarts.html"></iframe>
+    <button onclick='print()'>打印打印打印</button>
+    <script>
+      let $=document.querySelector.bind(document)
+      $('.iframe').onload=function(){
+        console.log('onload...')
+        window.onafterprint = function(){
+          console.log('??????')
+        }
+        $('.iframe').contentWindow.onafterprint=function(){
+          console.log('dasdsadasdaf')
+        }
+      }
+      function print(){
+        $('.iframe').contentWindow.print()
+      }
+    </script>
+  </body>
+</html>

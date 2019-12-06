@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>火焰图</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	let countA=countB=0
+	function test(){
+		let count = 0;
+		while(count<5000){
+			count++
+			if(count%4){
+				funcA()
+			}
+			if(!(count%4)){
+				funcB()
+			}
+		}
+	}
+	function funcA(){
+		countA++
+		if(!(countA%1000)){
+			console.log('funcA')
+		}
+	}
+	function funcB(){
+		countB++
+		if(!(countA%999)){
+			console.log('funcB')
+		}
+	}
+	test()
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+    html{height:100%}  
+    body{height:100%;margin:0px;padding:0px}  
+    #container{height:100%}  
+</style> 
+
+</head>
+<body>  
+<div id="container">
+
+</div> 
+
+<script type="text/javascript">
+
+// 通过递归使函数依次执行
+var i = 0;
+let f=(resolve,reject)=>{
+		setTimeout(()=>{resolve(i)},500)
+		}
+	let p
+function testPromise(){
+	console.log(i)
+	p=new Promise(f)
+	p.then((data)=>{
+		if(data>=10){
+			return
+		}else{
+			i++;
+			testPromise()
+		}
+	})
+	}
+testPromise()
+
+//遍历器test
+// var it = makeIterator(['a', 'b']);
+
+// it.next() // { value: "a", done: false }
+// it.next() // { value: "b", done: false }
+// it.next() // { value: undefined, done: true }
+
+// function makeIterator(array) {
+//   var nextIndex = 0;
+//   return {
+//     next: function() {
+//       return nextIndex < array.length ?
+//         {value: array[nextIndex++], done: false} :
+//         {value: undefined, done: true};
+//     }
+//   };
+// }
+// (function(){
+// 	let i=0
+// 	let a = setInterval(function(){
+// 		console.log(i)
+// 		if(i === 5){
+// 			clearInterval(a)
+// 			console.log(a)
+// 		}else{
+// 			i++
+// 		}
+// 	},1000)
+// })()
+
+// let f=(resolve,reject)=>{
+// 		setTimeout(()=>{console.log(1),resolve(1)},2000)
+// 		}
+</script> 
+</body>  
+</html>
